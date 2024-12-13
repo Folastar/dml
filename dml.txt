@@ -1,0 +1,72 @@
+To help you insert the provided rows into the corresponding tables from the given relational model and data, let's break it down step by step.
+
+### Data to Insert:
+- **Customers** table:
+  - `CustCode`: 1, `custName`: "John Doe", `custAdress`: "123 Elm St", `custTel`: "123-456-7890"
+  - `CustCode`: 2, `custName`: "Jane Smith", `custAdress`: "456 Oak Ave", `custTel`: "234-567-8901"
+  
+- **Orders** table:
+  - `OrderCode`: 101, `OrderDate`: "2024-12-01", `CustCode`: 1
+  - `OrderCode`: 102, `OrderDate`: "2024-12-02", `CustCode`: 2
+  
+- **Products** table:
+  - `Product_id`: 201, `Product_name`: "Laptop", `Price`: 1200, `Quantity`: 10
+  - `Product_id`: 202, `Product_name`: "Headphones", `Price`: 150, `Quantity`: 50
+  
+- **OrderDetails** table:
+  - `OrderCode`: 101, `Product_id`: 201, `Quantity`: 2
+  - `OrderCode`: 102, `Product_id`: 202, `Quantity`: 5
+
+---
+
+### SQL Insert Statements:
+
+#### 1. **Inserting Data into the Customers Table**
+
+```sql
+INSERT INTO Customers (CustCode, custName, custAdress, custTel)
+VALUES (1, 'John Doe', '123 Elm St', '123-456-7890');
+
+INSERT INTO Customers (CustCode, custName, custAdress, custTel)
+VALUES (2, 'Jane Smith', '456 Oak Ave', '234-567-8901');
+```
+
+#### 2. **Inserting Data into the Orders Table**
+
+```sql
+INSERT INTO Orders (OrderCode, OrderDate, CustCode)
+VALUES (101, TO_DATE('2024-12-01', 'YYYY-MM-DD'), 1);
+
+INSERT INTO Orders (OrderCode, OrderDate, CustCode)
+VALUES (102, TO_DATE('2024-12-02', 'YYYY-MM-DD'), 2);
+```
+
+#### 3. **Inserting Data into the Products Table**
+
+```sql
+INSERT INTO Products (Product_id, Product_name, Price, Quantity)
+VALUES (201, 'Laptop', 1200, 10);
+
+INSERT INTO Products (Product_id, Product_name, Price, Quantity)
+VALUES (202, 'Headphones', 150, 50);
+```
+
+#### 4. **Inserting Data into the OrderDetails Table**
+
+```sql
+INSERT INTO OrderDetails (OrderCode, Product_id, Quantity)
+VALUES (101, 201, 2);
+
+INSERT INTO OrderDetails (OrderCode, Product_id, Quantity)
+VALUES (102, 202, 5);
+```
+
+---
+
+### Explanation:
+- **Customers Table**: Inserts two customers with `CustCode`, `custName`, `custAdress`, and `custTel`.
+- **Orders Table**: Inserts two orders with `OrderCode`, `OrderDate` (using `TO_DATE` to ensure the date format), and `CustCode` (which links to the **Customers** table).
+- **Products Table**: Inserts two products with `Product_id`, `Product_name`, `Price`, and `Quantity`.
+- **OrderDetails Table**: Inserts two order details linking `OrderCode` and `Product_id` with the quantity of the product ordered.
+
+This is the correct way to insert the given data into the respective tables. If you need further clarification or more help with this, feel free to ask!
